@@ -36,9 +36,9 @@ dependencies {
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
 
     // Arbaz's Libraries
-    implementation 'com.github.ArbazMateen.Commons:adaptors:0.1.3'
-    implementation 'com.github.ArbazMateen.Commons:dialogs:0.1.3'
-    implementation 'com.github.ArbazMateen.Commons:extensions:0.1.3'
+//    implementation 'com.github.ArbazMateen.Commons:adaptors:0.1.3'
+//    implementation 'com.github.ArbazMateen.Commons:dialogs:0.1.3'
+//    implementation 'com.github.ArbazMateen.Commons:extensions:0.1.3'
     implementation 'com.github.ArbazMateen.Commons:prefs:0.1.3'
     implementation 'com.github.ArbazMateen.Commons:validator:0.1.3'
 
