@@ -6,6 +6,57 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="popupMenuStyle">@style/MyPopupMenu</item>
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MyAppTheme.TextInputLayout" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/danger</item>
+    </style>
+
+    <style name="DisableEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#cfcfcf</item>
+        <item name="colorControlActivated">#cfcfcf</item>
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/dark_gray</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MyPopupMenu" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:dropDownHorizontalOffset">-4dp</item>
+        <item name="android:dropDownVerticalOffset">4dp</item>
+    </style>
+
+    <style name="TreeNodeStyleCustom">
+        <item name="android:paddingLeft">20dp</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+
+    <!--<style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />-->
+
+    <!--<style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">-->
+        <!--<item name="android:windowIsFloating">true</item>-->
+        <!--<item name="bottomSheetStyle">@style/BottomSheet</item>-->
+    <!--</style>-->
+
+    <!-- set the rounded drawable as background to your bottom sheet -->
+    <!--<style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">-->
+        <!--<item name="android:background">@drawable/bg_bottom_sheet</item>-->
+    <!--</style>-->
 
 </resources>
