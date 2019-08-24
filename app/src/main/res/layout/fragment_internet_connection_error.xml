@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:clickable="true"
+              android:focusable="true"
+              android:focusableInTouchMode="true"
+              android:background="#FFF"
+              android:padding="32dp"
+              tools:context=".fragments.InternetConnectionErrorFragment">
+
+    <TextView
+            android:id="@+id/no_connection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Internet Connection Error"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+    <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_error_wifi"
+            android:contentDescription="@string/image_descp" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="An internet error occurred or Server is down.\nOr you connected to a Slow Internet Connection. \nPlease try again later."
+            android:textAlignment="center"
+            android:textSize="12sp" />
+
+    <Button
+            android:layout_marginTop="16dp"
+            android:id="@+id/retry_btn"
+            android:text="Retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/connection_progress"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+</LinearLayout>

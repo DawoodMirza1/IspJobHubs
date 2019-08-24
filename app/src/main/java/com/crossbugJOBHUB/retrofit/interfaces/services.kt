@@ -13,7 +13,11 @@ interface UserService {
     fun getUsers(): Call<MutableList<User>>
 
     @GET("users/get_user.php")
-    fun getAreas(@Query("uid") userId: Int = 0): Call<MutableList<User>>
+    fun getUser(@Query("uid") userId: Int = 0): Call<MutableList<User>>
+
+    @POST
+    fun authenticate(@Field("un") username: String,
+                     @Field("ps") password: String): Call<APIResponces<User>>
 
     @Multipart
     @POST("users/save_user.php")
