@@ -1,5 +1,16 @@
 package com.crossbugJOBHUB.commons
 
+object APICode {
+    const val OK = 1
+    const val ALREADY_EXISTS = 2
+    const val EMPTY = 3
+    const val RETURN_EXISTS = 4
+    const val NOT_OK = 5
+    const val NOT_FOUND = 6
+    const val NOT_VALID = 7
+    const val UN_DELETED = 8
+}
+
 object Keys {
     const val LOGIN = "newLogin"
     const val USER_ID = "user_id"
