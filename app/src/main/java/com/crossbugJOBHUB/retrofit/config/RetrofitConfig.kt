@@ -4,7 +4,7 @@ import android.content.Context
 import com.arbazmateen.prefs.Prefs
 import com.crossbugJOBHUB.R
 import com.google.gson.GsonBuilder
-import com.jadeedbazar.financials.commons.Keys
+import com.crossbugJOBHUB.commons.Keys
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
