@@ -20,8 +20,7 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitAPI {
 
-    //    private const val BASE_URL = "http://jadeedbazar.com/financials_api/"
-    private const val BASE_URL = "http://jadeedbazar.com/financials_api/"
+    private const val BASE_URL = "http://arbazmateen.com/jobhub/"
 
     private const val API_KEY = "123456789"
 
