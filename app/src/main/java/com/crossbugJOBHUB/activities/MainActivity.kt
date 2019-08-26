@@ -16,11 +16,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this@MainActivity, JobsActivity::class.java))
         }
 
-        card1.setOnClickListener {
+        card2.setOnClickListener {
             startActivity(Intent(this@MainActivity, JobsActivity::class.java))
         }
 
-        card1.setOnClickListener {
+        card3.setOnClickListener {
             startActivity(Intent(this@MainActivity, JobsActivity::class.java))
         }
 

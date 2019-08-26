@@ -16,8 +16,11 @@
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.JobsActivity">
-        </activity>
+        <activity android:name=".activities.JobsActivity"
+                  android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+                  android:label="Jobs"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme.NoActionBar" />
         <activity
                 android:name=".activities.StartActivity"
                 android:configChanges="keyboard|keyboardHidden|orientation|screenSize"

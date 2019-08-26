@@ -2,6 +2,8 @@ package com.crossbugJOBHUB.activities
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.crossbugJOBHUB.R
 import com.crossbugJOBHUB.commons.Divider
@@ -79,6 +81,24 @@ class JobsActivity : AppCompatActivity() {
         when {
             search_view.isSearchOpen -> search_view.closeSearch()
             else -> super.onBackPressed()
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_search, menu)
+        search_view.setMenuItem(menu?.findItem(R.id.action_search))
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
         }
     }
 

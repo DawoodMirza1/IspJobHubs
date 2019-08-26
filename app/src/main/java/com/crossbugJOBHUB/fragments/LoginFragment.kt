@@ -50,6 +50,8 @@ class LoginFragment : Fragment() {
         wait = waitDialog(mContext, "Authenticating...")
 
         loginBtn.setOnClickListener {
+            startActivity(Intent(mContext, MainActivity::class.java))
+            mActivity.finish()
 
             val validUsername = username.validator(layout_username).required().validate()
             val validPassword = password.validator(layout_password).required().validate()
