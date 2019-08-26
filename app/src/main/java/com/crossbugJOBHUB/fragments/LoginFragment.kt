@@ -50,8 +50,6 @@ class LoginFragment : Fragment() {
         wait = waitDialog(mContext, "Authenticating...")
 
         loginBtn.setOnClickListener {
-            startActivity(Intent(mContext, MainActivity::class.java))
-            mActivity.finish()
 
             val validUsername = username.validator(layout_username).required().validate()
             val validPassword = password.validator(layout_password).required().validate()
@@ -69,14 +67,14 @@ class LoginFragment : Fragment() {
                                     when(response.body()!!.code) {
                                         APICode.OK -> {
 
-                                            val data = response.body()!!.data
-                                            Prefs(mContext).put(Keys.USER_ID, data.id)
-                                            Prefs(mContext).put(Keys.NAME, data.name)
-                                            Prefs(mContext).put(Keys.USERNAME, username.text())
-                                            Prefs(mContext).put(Keys.PASSWORD, password.text().encrypt())
-                                            Prefs(mContext).put(Keys.LOGIN, true)
-
-                                            Prefs(mContext).put(Keys.EMAIL, data.email ?: "")
+//                                            val data = response.body()!!.data
+//                                            Prefs(mContext).put(Keys.USER_ID, data.id)
+//                                            Prefs(mContext).put(Keys.NAME, data.name)
+//                                            Prefs(mContext).put(Keys.USERNAME, username.text())
+//                                            Prefs(mContext).put(Keys.PASSWORD, password.text().encrypt())
+//                                            Prefs(mContext).put(Keys.LOGIN, true)
+//
+//                                            Prefs(mContext).put(Keys.EMAIL, data.email ?: "")
 //                                            Prefs(mContext).put(Keys.PROFILE_IMAGE, data.imageUrl ?: "")
 
                                             wait.dismiss()

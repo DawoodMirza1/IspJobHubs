@@ -15,7 +15,7 @@ interface UserService {
     @GET("users/get_user.php")
     fun getUser(@Query("uid") userId: Int = 0): Call<MutableList<User>>
 
-    @POST
+    @POST("users/auth.php")
     fun authenticate(@Field("un") username: String,
                      @Field("ps") password: String): Call<APIResponces<User>>
 
