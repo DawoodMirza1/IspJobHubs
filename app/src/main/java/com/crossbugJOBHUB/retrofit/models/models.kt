@@ -9,3 +9,6 @@ data class User(
     @SerializedName("email") var email: String = "",
     @SerializedName("status") var status: String = ""
 ) : Serializable
+
+data class Job(@SerializedName("id") var id: Long = 0,
+               @SerializedName("title") var title: String = ""): Serializable
