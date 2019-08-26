@@ -3,7 +3,11 @@ package com.crossbugJOBHUB.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import com.arbazmateen.prefs.Prefs
 import com.crossbugJOBHUB.R
+import kotlinx.android.synthetic.main.activity_jobs.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -25,4 +29,27 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.dashboard_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            R.id.profile -> {
+                startActivity(Intent(this@MainActivity, JobsActivity::class.java))
+                true
+            }
+            R.id.logout -> {
+                Prefs(this@MainActivity).clear()
+                finish()
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
+    }
+
 }
