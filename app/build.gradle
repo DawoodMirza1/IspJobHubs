@@ -63,7 +63,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 
     // image cropper
-//    implementation project(':libs:imageCropperActivity')
+    implementation project(':libs:imageCropperActivity')
 
     // material search view for toolbar
     implementation "com.miguelcatalan:materialsearchview:1.4.0"

@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            tools:context=".activities.UserProfileActivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/greenish">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <View
+                android:id="@+id/space_view"
+                android:layout_width="match_parent"
+                android:layout_height="80dp" />
+
+        <RelativeLayout
+                android:id="@+id/profile_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/space_view"
+                android:paddingBottom="16dp">
+
+            <!--<TextView-->
+            <!--android:id="@+id/profile_designation"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="105dp"-->
+            <!--android:text="(Designation)"-->
+            <!--android:textAppearance="@style/TextAppearance.AppCompat.Body1"-->
+            <!--android:textColor="#fff"-->
+            <!--android:textSize="12sp" />-->
+
+            <TextView
+                    android:id="@+id/profile_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="120dp"
+                    android:text="Ch Arbaz Mateen"
+                    android:textColor="#fff"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            <TextView
+                    android:id="@+id/profile_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profile_username"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="8dp"
+                    android:text="arbaz.mateen@softagics.com"
+                    android:textColor="#fff"
+                    android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_below="@id/space_view"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-60dp"
+                android:src="@drawable/ic_person_square" />
+
+        <ProgressBar
+                android:id="@+id/load_profile_image"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_below="@id/space_view"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-15dp" />
+
+        <ImageButton
+                android:id="@+id/select_image_btn"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_below="@id/profile_image"
+                android:layout_alignEnd="@id/profile_image"
+                android:layout_marginTop="-40dp"
+                android:background="@drawable/round_image_backgroung"
+                android:contentDescription="@string/image_descp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_camera" />
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_layout"
+                android:layout_marginBottom="25dp"
+                android:orientation="vertical">
+
+            <!--<LinearLayout-->
+            <!--android:id="@+id/reference_layout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="12dp"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:text="Reference Code"-->
+            <!--android:textColor="#fff"-->
+            <!--android:textSize="18sp"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/reference_code"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="4dp"-->
+            <!--android:background="#fff"-->
+            <!--android:padding="16dp"-->
+            <!--android:text="SGH155SDF35FE"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<ImageButton-->
+            <!--android:id="@+id/reference_code_share"-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_alignEnd="@id/reference_code"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:background="@drawable/profile_image_background"-->
+            <!--android:contentDescription="@string/image_descp"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--android:src="@drawable/ic_share" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+            <!--android:id="@+id/profile_supervisor_layout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="12dp"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:text="Supervised By"-->
+            <!--android:textColor="#fff"-->
+            <!--android:textSize="18sp"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/profile_supervisor_name"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="4dp"-->
+            <!--android:background="#fff"-->
+            <!--android:padding="16dp"-->
+            <!--android:text="Supervisor Name"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<ImageButton-->
+            <!--android:id="@+id/show_supervisor_info"-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_alignEnd="@id/profile_supervisor_name"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:background="@drawable/profile_image_background"-->
+            <!--android:contentDescription="@string/image_descp"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--android:src="@drawable/ic_eye"-->
+            <!--android:visibility="gone" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--</LinearLayout>-->
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Personal Information"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp">
+
+                <TextView
+                        android:id="@+id/profile_fullName"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:background="#fff"
+                        android:padding="16dp"
+                        android:text="Name"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="2dp"
+                        android:text="Full Name"
+                        android:textSize="12sp" />
+
+                <ImageButton
+                        android:id="@+id/edit_fullName"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignEnd="@id/profile_fullName"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/round_image_backgroung"
+                        android:contentDescription="@string/image_descp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_edit" />
+
+            </RelativeLayout>
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/profile_lastName"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="4dp"-->
+            <!--android:background="#fff"-->
+            <!--android:padding="16dp"-->
+            <!--android:text="Last Name"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="2dp"-->
+            <!--android:text="Last Name"-->
+            <!--android:textSize="12sp" />-->
+
+            <!--<ImageButton-->
+            <!--android:id="@+id/edit_lastName"-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_alignEnd="@id/profile_lastName"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:background="@drawable/round_image_backgroung"-->
+            <!--android:contentDescription="@string/image_descp"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--android:src="@drawable/ic_edit" />-->
+
+            <!--</RelativeLayout>-->
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp">
+
+                <TextView
+                        android:id="@+id/profile_change_password"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:background="#fff"
+                        android:padding="16dp"
+                        android:text="Change Password"
+                        android:textStyle="bold" />
+
+                <ImageButton
+                        android:id="@+id/edit_password"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignEnd="@id/profile_change_password"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/round_image_backgroung"
+                        android:contentDescription="@string/image_descp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_edit" />
+
+            </RelativeLayout>
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/profile_phone_num"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="4dp"-->
+            <!--android:background="#fff"-->
+            <!--android:padding="16dp"-->
+            <!--android:text="Cell Number"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="2dp"-->
+            <!--android:text="Cell Number"-->
+            <!--android:textSize="12sp" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/profile_whatsapp_num"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="4dp"-->
+            <!--android:background="#fff"-->
+            <!--android:padding="16dp"-->
+            <!--android:text="Whatsapp Number"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="2dp"-->
+            <!--android:text="Whatsapp Number"-->
+            <!--android:textSize="12sp" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/profile_cnic"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="4dp"-->
+            <!--android:background="#fff"-->
+            <!--android:padding="16dp"-->
+            <!--android:text="CNIC"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="2dp"-->
+            <!--android:text="CNIC"-->
+            <!--android:textSize="12sp" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<LinearLayout-->
+            <!--android:id="@+id/business_bank_info_layout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="12dp"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:text="Business Information"-->
+            <!--android:textColor="#fff"-->
+            <!--android:textSize="18sp"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/business_name"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="4dp"-->
+            <!--android:background="#fff"-->
+            <!--android:padding="16dp"-->
+            <!--android:text="Business Name"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="2dp"-->
+            <!--android:text="Business Name"-->
+            <!--android:textSize="12sp" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/business_ntn"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="4dp"-->
+            <!--android:background="#fff"-->
+            <!--android:padding="16dp"-->
+            <!--android:text="Business NTN"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="2dp"-->
+            <!--android:text="Business NTN"-->
+            <!--android:textSize="12sp" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/business_phone"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="4dp"-->
+            <!--android:background="#fff"-->
+            <!--android:padding="16dp"-->
+            <!--android:text="Business Phone"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="2dp"-->
+            <!--android:text="Business Phone"-->
+            <!--android:textSize="12sp" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/business_whatsapp"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="4dp"-->
+            <!--android:background="#fff"-->
+            <!--android:padding="16dp"-->
+            <!--android:text="Business Whatsapp"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="2dp"-->
+            <!--android:text="Business Whatsapp"-->
+            <!--android:textSize="12sp" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/business_city"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="4dp"-->
+            <!--android:background="#fff"-->
+            <!--android:padding="16dp"-->
+            <!--android:text="Business City"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="2dp"-->
+            <!--android:text="Business City"-->
+            <!--android:textSize="12sp" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="12dp"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:text="Bank Information"-->
+            <!--android:textColor="#fff"-->
+            <!--android:textSize="18sp"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/account_title"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="4dp"-->
+            <!--android:background="#fff"-->
+            <!--android:padding="16dp"-->
+            <!--android:text="Account Title"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="2dp"-->
+            <!--android:text="Account Title"-->
+            <!--android:textSize="12sp" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/iban"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="4dp"-->
+            <!--android:background="#fff"-->
+            <!--android:padding="16dp"-->
+            <!--android:text="IBAN"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="2dp"-->
+            <!--android:text="IBAN"-->
+            <!--android:textSize="12sp" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/bank_name"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="4dp"-->
+            <!--android:background="#fff"-->
+            <!--android:padding="16dp"-->
+            <!--android:text="Bank Name"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="2dp"-->
+            <!--android:text="Bank Name"-->
+            <!--android:textSize="12sp" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/bank_adress"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="4dp"-->
+            <!--android:background="#fff"-->
+            <!--android:padding="16dp"-->
+            <!--android:text="Bank Address"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="2dp"-->
+            <!--android:text="Bank Address"-->
+            <!--android:textSize="12sp" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/bank_code"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="4dp"-->
+            <!--android:background="#fff"-->
+            <!--android:padding="16dp"-->
+            <!--android:text="Bank Code"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="2dp"-->
+            <!--android:text="Bank Code"-->
+            <!--android:textSize="12sp" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginStart="12dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginTop="16dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="Selected Categories"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:textColor="#fff"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:textSize="18sp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:textStyle="bold" />&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<RelativeLayout&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginLeft="8dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginRight="8dp">&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/profile_categories"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="fill_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_margin="4dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:background="#fff"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:padding="16dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="Categories"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:textStyle="bold" />&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<ImageButton&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/view_categories"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="30dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="30dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_alignEnd="@id/profile_categories"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_centerVertical="true"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginEnd="8dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:background="@drawable/profile_image_background"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:contentDescription="@string/image_descp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:scaleType="centerCrop"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:src="@drawable/ic_eye" />&ndash;&gt;-->
+
+            <!--&lt;!&ndash;</RelativeLayout>&ndash;&gt;-->
+
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+            <!--android:id="@+id/categories_layout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="12dp"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:text="Selected Categories"-->
+            <!--android:textColor="#fff"-->
+            <!--android:textSize="18sp"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/profile_categories"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="4dp"-->
+            <!--android:background="#fff"-->
+            <!--android:padding="16dp"-->
+            <!--android:text="Categories"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<ImageButton-->
+            <!--android:id="@+id/view_categories"-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_alignEnd="@id/profile_categories"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:background="@drawable/profile_image_background"-->
+            <!--android:contentDescription="@string/image_descp"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--android:src="@drawable/ic_eye" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--</LinearLayout>-->
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

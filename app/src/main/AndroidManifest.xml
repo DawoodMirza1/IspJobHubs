@@ -4,6 +4,9 @@
           package="com.crossbugJOBHUB">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
             android:name=".App"
@@ -16,11 +19,16 @@
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.JobsActivity"
+        <activity android:name=".activities.UserProfileActivity"
                   android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-                  android:label="Jobs"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/AppTheme.NoActionBar" />
+                  android:label="Profile"
+                  android:screenOrientation="portrait" />
+        <activity
+                android:name=".activities.JobsActivity"
+                android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+                android:label="Jobs"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme.NoActionBar"/>
         <activity
                 android:name=".activities.StartActivity"
                 android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
@@ -37,6 +45,9 @@
                 android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
                 android:label="Dashboard"
                 android:screenOrientation="portrait"/>
+        <activity
+                android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+                android:theme="@style/Base.Theme.AppCompat" />
     </application>
 
 </manifest>

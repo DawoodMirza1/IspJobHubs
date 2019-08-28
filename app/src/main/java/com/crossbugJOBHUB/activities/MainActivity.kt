@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
             R.id.profile -> {
-                startActivity(Intent(this@MainActivity, JobsActivity::class.java))
+                startActivity(Intent(this@MainActivity, UserProfileActivity::class.java))
                 true
             }
             R.id.logout -> {
