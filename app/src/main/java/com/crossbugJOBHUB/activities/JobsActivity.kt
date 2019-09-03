@@ -22,15 +22,15 @@ class JobsActivity : AppCompatActivity() {
     private var queryText = ""
     private var adaptor: SimpleRecyclerAdaptor<Job>? = null
     private var list = mutableListOf<Job>(
-        Job(1, "Android Developer", "Details for job requirements and specifications"),
-        Job(1, "Android Developer", "Details for job requirements and specifications"),
-        Job(1, "Android Developer", "Details for job requirements and specifications"),
-        Job(1, "Android Developer", "Details for job requirements and specifications"),
-        Job(1, "Android Developer", "Details for job requirements and specifications"),
-        Job(1, "Android Developer", "Details for job requirements and specifications"),
-        Job(1, "Android Developer", "Details for job requirements and specifications"),
-        Job(1, "Android Developer", "Details for job requirements and specifications"),
-        Job(1, "Android Developer", "Details for job requirements and specifications")
+        Job(1, "1 - Android Developer", "Details for job requirements and specifications"),
+        Job(1, "2 - Android Developer", "Details for job requirements and specifications"),
+        Job(1, "3 - Android Developer", "Details for job requirements and specifications"),
+        Job(1, "4 - Android Developer", "Details for job requirements and specifications"),
+        Job(1, "5 - Android Developer", "Details for job requirements and specifications"),
+        Job(1, "6 - Android Developer", "Details for job requirements and specifications"),
+        Job(1, "7 - Android Developer", "Details for job requirements and specifications"),
+        Job(1, "8 - Android Developer", "Details for job requirements and specifications"),
+        Job(1, "9 - Android Developer", "Details for job requirements and specifications")
         )
 
     private lateinit var wait: AlertDialog
@@ -91,6 +91,7 @@ class JobsActivity : AppCompatActivity() {
 
     fun initAdaptor() {
         adaptor = SimpleRecyclerAdaptor.Builder<Job>(this@JobsActivity)
+            .setDataList(list)
             .setLayout(R.layout.job_item_layout)
             .addViews(R.id.title, R.id.description, R.id.apply)
             .setBindViewListener { _, item, position, viewMap ->

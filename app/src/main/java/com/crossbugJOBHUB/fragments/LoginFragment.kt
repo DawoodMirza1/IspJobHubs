@@ -50,65 +50,63 @@ class LoginFragment : Fragment() {
         wait = waitDialog(mContext, "Authenticating...")
 
         loginBtn.setOnClickListener {
-            startActivity(Intent(mContext, MainActivity::class.java))
-            mActivity.finish()
 
-//            val validUsername = username.validator(layout_username).required().validate()
-//            val validPassword = password.validator(layout_password).required().validate()
-//
-//            if(validUsername && validPassword) {
-//
-//                InternetCheck { internet ->
-//                    if(internet) {
-//                        wait.show()
-//
-//                        userService().authenticate(username.text(), password.text()).enqueue(object:
-//                            Callback<APIResponces<User>?> {
-//                            override fun onResponse(call: Call<APIResponces<User>?>, response: Response<APIResponces<User>?>) {
-//                                if(response.isSuccessful && response.body() != null && response.body()!!.success == 1) {
-//                                    when(response.body()!!.code) {
-//                                        APICode.OK -> {
+            val validUsername = username.validator(layout_username).required().validate()
+            val validPassword = password.validator(layout_password).required().validate()
 
-//                                            val data = response.body()!!.data
-//                                            Prefs(mContext).put(Keys.USER_ID, data.id)
-//                                            Prefs(mContext).put(Keys.NAME, data.name)
-//                                            Prefs(mContext).put(Keys.USERNAME, username.text())
-//                                            Prefs(mContext).put(Keys.PASSWORD, password.text().encrypt())
-//                                            Prefs(mContext).put(Keys.LOGIN, true)
-//
-//                                            Prefs(mContext).put(Keys.EMAIL, data.email ?: "")
-//                                            Prefs(mContext).put(Keys.PROFILE_IMAGE, data.imageUrl ?: "")
+            if(validUsername && validPassword) {
 
-//                                            wait.dismiss()
-//                                            startActivity(Intent(mContext, MainActivity::class.java))
-//                                            mActivity.finish()
-//
-//                                        }
-//                                        APICode.NOT_VALID -> {
-//                                            wait.dismiss()
-//                                            errorDialog(mContext, "Invalid Credentials", "Username/Password is not valid, Please check and try again!", true).show()
-//                                        }
-//                                    }
-//
-//                                } else {
-//                                    wait.dismiss()
-//                                    info("else")
-//                                    errorDialog(mContext, "Invalid Response", "Invalid response from server, Please try again later!", true).show()
-//                                }
-//                            }
-//
-//                            override fun onFailure(call: Call<APIResponces<User>?>, t: Throwable) {
-//                                wait.dismiss()
-//                                info("failure")
-//                                errorDialog(mContext, "Invalid Response", "Invalid response from server, Please try again later!", true).show()
-//                            }
-//                        })
-//                    } else {
-//                        noInternetFragment()
-//                    }
-//                }
-//
-//            }
+                InternetCheck { internet ->
+                    if(internet) {
+                        wait.show()
+
+                        userService().authenticate(username.text(), password.text()).enqueue(object:
+                            Callback<APIResponces<User>?> {
+                            override fun onResponse(call: Call<APIResponces<User>?>, response: Response<APIResponces<User>?>) {
+                                if(response.isSuccessful && response.body() != null && response.body()!!.success == 1) {
+                                    when(response.body()!!.code) {
+                                        APICode.OK -> {
+
+                                            val data = response.body()!!.data
+                                            Prefs(mContext).put(Keys.USER_ID, data.id)
+                                            Prefs(mContext).put(Keys.NAME, data.name)
+                                            Prefs(mContext).put(Keys.USERNAME, username.text())
+                                            Prefs(mContext).put(Keys.PASSWORD, password.text().encrypt())
+                                            Prefs(mContext).put(Keys.LOGIN, true)
+
+                                            Prefs(mContext).put(Keys.EMAIL, data.email ?: "")
+                                            Prefs(mContext).put(Keys.PROFILE_IMAGE, data.imageUrl ?: "")
+
+                                            wait.dismiss()
+                                            startActivity(Intent(mContext, MainActivity::class.java))
+                                            mActivity.finish()
+
+                                        }
+                                        APICode.NOT_VALID -> {
+                                            wait.dismiss()
+                                            errorDialog(mContext, "Invalid Credentials", "Username/Password is not valid, Please check and try again!", true).show()
+                                        }
+                                    }
+
+                                } else {
+                                    wait.dismiss()
+                                    info("else")
+                                    errorDialog(mContext, "Invalid Response", "Invalid response from server, Please try again later!", true).show()
+                                }
+                            }
+
+                            override fun onFailure(call: Call<APIResponces<User>?>, t: Throwable) {
+                                wait.dismiss()
+                                info("failure")
+                                errorDialog(mContext, "Invalid Response", "Invalid response from server, Please try again later!", true).show()
+                            }
+                        })
+                    } else {
+                        noInternetFragment()
+                    }
+                }
+
+            }
 
         }
 
@@ -118,6 +116,7 @@ class LoginFragment : Fragment() {
                 .commit()
         }
     }
+
     private fun checkUser() {
         InternetCheck { internet ->
             if (internet) {

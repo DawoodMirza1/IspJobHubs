@@ -15,9 +15,10 @@ interface UserService {
     @GET("users/get_user.php")
     fun getUser(@Query("uid") userId: Int = 0): Call<MutableList<User>>
 
-    @POST("users/auth.php")
-    fun authenticate(@Field("un") username: String,
-                     @Field("ps") password: String): Call<APIResponces<User>>
+    @FormUrlEncoded
+    @POST("users/authentication.php")
+    fun authenticate(@Field("username") username: String,
+                     @Field("password") password: String): Call<APIResponces<User>>
 
     @Multipart
     @POST("users/save_user.php")

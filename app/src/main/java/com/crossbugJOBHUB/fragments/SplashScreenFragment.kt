@@ -33,7 +33,7 @@ class SplashScreenFragment : Fragment() {
             mActivity.supportFragmentManager.beginTransaction()
                 .replace(android.R.id.content, LoginFragment())
                 .commit()
-        }, 300)
+        }, 2000)
 
     }
 
