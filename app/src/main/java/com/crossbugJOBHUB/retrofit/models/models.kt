@@ -16,7 +16,8 @@ data class User(
     @SerializedName("age") var age: Int = 0,
     @SerializedName("cgpa") var cgpa: Double = 0.0,
     @SerializedName("image") var imageUrl: String = "",
-    @SerializedName("address") var address: String = ""
+    @SerializedName("address") var address: String = "",
+    @SerializedName("password") var password: String = ""
 ) : Serializable
 
 data class Job(@SerializedName("id") var id: Long = 0,

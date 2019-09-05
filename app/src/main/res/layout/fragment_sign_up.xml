@@ -153,6 +153,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
+                android:id="@+id/gander"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 android:gravity="center"
@@ -160,12 +161,15 @@
                 android:layout_height="wrap_content">
 
             <RadioButton
+                    android:id="@+id/g_male"
                     android:layout_marginEnd="50dp"
+                    android:checked="true"
                     android:text="Male"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
             <RadioButton
+                    android:id="@+id/g_female"
                     android:text="Female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
