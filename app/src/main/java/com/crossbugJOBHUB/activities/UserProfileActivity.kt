@@ -30,9 +30,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.crossbugJOBHUB.R
 import com.crossbugJOBHUB.commons.*
-import com.crossbugJOBHUB.commons.InternetCheck
 import com.crossbugJOBHUB.retrofit.interfaces.userService
-import com.crossbugJOBHUB.retrofit.response.APIResponces
 import com.crossbugJOBHUB.retrofit.response.APIResponseMsg
 import com.google.android.material.textfield.TextInputLayout
 import com.theartofdev.edmodo.cropper.CropImage
@@ -190,7 +188,7 @@ class UserProfileActivity : AppCompatActivity() {
             inputDialog.dismiss()
 
             profile_fullName.text = editText.text.trim()
-//            updateName()
+            updateName()
 
         }
 
@@ -225,35 +223,35 @@ class UserProfileActivity : AppCompatActivity() {
 //        }
 //    }
 
-//    private fun updateName() {
-//        InternetCheck { internet ->
-//            if (internet) {
-//
-//                val name = profile_fullName.text.toString()
-//
-//                userService().updateProfile(userId, "", "", name).enqueue(object : Callback<APIResponseMsg?> {
-//                    override fun onResponse(call: Call<APIResponseMsg?>?, response: Response<APIResponseMsg?>?) {
-//
-//                        if (response != null && response.isSuccessful && response.body()?.success == 1 && response.body()?.code == 1) {
-//
-//                            Prefs(this@UserProfileActivity).put(Keys.NAME, name)
-//                            changes = true
-//                            toastShort("Name Updated.")
-//                        } else {
-//                            toastShort("Cannot update Name!")
-//                        }
-//
-//                    }
-//
-//                    override fun onFailure(call: Call<APIResponseMsg?>?, t: Throwable?) {
-//                        toastShort("Cannot update name!")
-//                    }
-//                })
-//            } else {
-//                noInternetFragment()
-//            }
-//        }
-//    }
+    private fun updateName() {
+        InternetCheck { internet ->
+            if (internet) {
+
+                val name = profile_fullName.text.toString()
+
+                userService().updateProfile(userId, "", "", name).enqueue(object : Callback<APIResponseMsg?> {
+                    override fun onResponse(call: Call<APIResponseMsg?>?, response: Response<APIResponseMsg?>?) {
+
+                        if (response != null && response.isSuccessful && response.body()?.success == 1 && response.body()?.code == 1) {
+
+                            Prefs(this@UserProfileActivity).put(Keys.NAME, name)
+                            changes = true
+                            toastShort("Name Updated.")
+                        } else {
+                            toastShort("Cannot update Name!")
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<APIResponseMsg?>?, t: Throwable?) {
+                        toastShort("Cannot update name!")
+                    }
+                })
+            } else {
+                noInternetFragment()
+            }
+        }
+    }
 
     private fun changePasswordDialog() {
         val builder = AlertDialog.Builder(this)
@@ -290,7 +288,7 @@ class UserProfileActivity : AppCompatActivity() {
 
         currentPass.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if (currentPass.text.trim().length >= 8) {
+                if (currentPass.text.trim().length >= 6) {
 //                    if (currentPass.text.trim().matches(Regex(PASSWORD_PATTERN))) {
                     curPass = true
                     layoutCurrentPassInput.isErrorEnabled = false
@@ -300,7 +298,7 @@ class UserProfileActivity : AppCompatActivity() {
 //                    }
                 } else {
                     curPass = false
-                    layoutCurrentPassInput.error = "Min length 8"
+                    layoutCurrentPassInput.error = "Min length 6"
                 }
                 inputDialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = curPass && nPass && cPass
             }
@@ -314,17 +312,17 @@ class UserProfileActivity : AppCompatActivity() {
 
         newPass.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if (newPass.text.trim().length >= 8) {
-                    if (newPass.text.trim().matches(Regex(REGEX_PASSWORD_WO_SPACE))) {
+                if (newPass.text.trim().length >= 6) {
+//                    if (newPass.text.trim().matches(Regex(REGEX_PASSWORD_WO_SPACE))) {
                         nPass = true
                         layoutNewPassInput.isErrorEnabled = false
-                    } else {
-                        nPass = false
-                        layoutNewPassInput.error = "Invalid password"
-                    }
+//                    } else {
+//                        nPass = false
+//                        layoutNewPassInput.error = "Invalid password"
+//                    }
                 } else {
                     nPass = false
-                    layoutNewPassInput.error = "Min length 8"
+                    layoutNewPassInput.error = "Min length 6"
                 }
                 inputDialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = curPass && nPass && cPass
             }
@@ -338,8 +336,8 @@ class UserProfileActivity : AppCompatActivity() {
 
         confirmPass.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if (confirmPass.text.trim().length >= 8) {
-                    if (confirmPass.text.trim().matches(Regex(REGEX_PASSWORD_WO_SPACE))) {
+                if (confirmPass.text.trim().length >= 6) {
+//                    if (confirmPass.text.trim().matches(Regex(REGEX_PASSWORD_WO_SPACE))) {
                         if (confirmPass.text.trim().toString() == newPass.text.trim().toString()) {
                             cPass = true
                             layoutConfirmPassInput.isErrorEnabled = false
@@ -347,13 +345,13 @@ class UserProfileActivity : AppCompatActivity() {
                             cPass = false
                             layoutConfirmPassInput.error = "Invalid confirm password"
                         }
-                    } else {
-                        cPass = false
-                        layoutConfirmPassInput.error = "Invalid confirm password"
-                    }
+//                    } else {
+//                        cPass = false
+//                        layoutConfirmPassInput.error = "Invalid confirm password"
+//                    }
                 } else {
                     cPass = false
-                    layoutConfirmPassInput.error = "Min length 8"
+                    layoutConfirmPassInput.error = "Min length 6"
                 }
                 inputDialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = curPass && nPass && cPass
             }
@@ -368,72 +366,72 @@ class UserProfileActivity : AppCompatActivity() {
         inputDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             fields.visibility = View.GONE
             loading.visibility = View.VISIBLE
-//            updatePassword(
-//                currentPass.text.trim().toString(),
-//                newPass.text.trim().toString(),
-//                fields,
-//                loading,
-//                inputDialog,
-//                layoutCurrentPassInput
-//            )
+            updatePassword(
+                currentPass.text.trim().toString(),
+                newPass.text.trim().toString(),
+                fields,
+                loading,
+                inputDialog,
+                layoutCurrentPassInput
+            )
 
         }
     }
 
-//    private fun updatePassword(
-//        currentPass: String, newPass: String, fields: LinearLayout, loading: ProgressBar,
-//        inputDialog: AlertDialog, layoutCurrentPassInput: TextInputLayout
-//    ) {
-//
-//        InternetCheck { internet ->
-//
-//            if (internet) {
-//                userService().updateProfile(userId, currentPass, newPass).enqueue(object : Callback<APIResponseMsg?> {
-//                    override fun onResponse(call: Call<APIResponseMsg?>?, response: Response<APIResponseMsg?>?) {
-//
-//                        if (response != null && response.isSuccessful) {
-//
-//                            if (response.body()?.success == 1) {
-//                                when (response.body()?.code) {
-//                                    APICode.NOT_VALID -> {
-//                                        fields.visibility = View.VISIBLE
-//                                        loading.visibility = View.GONE
-//                                        toastLong("${response.body()?.message}")
-//                                        layoutCurrentPassInput.error = response.body()?.message
-//                                    }
-//                                    APICode.OK -> {
-//                                        inputDialog.dismiss()
-//                                        toastShort("Password updated.")
-//                                        Prefs(this@UserProfileActivity).put(Keys.PASSWORD, newPass.encrypt())
-//                                    }
-//                                }
-//                            } else {
-//                                fields.visibility = View.VISIBLE
-//                                loading.visibility = View.GONE
-//                                toastLong("Cannot update password!")
-//                            }
-//
-//                        } else {
-//                            fields.visibility = View.VISIBLE
-//                            loading.visibility = View.GONE
-//                            toastLong("Invalid response from Server!")
-//                        }
-//
-//                    }
-//
-//                    override fun onFailure(call: Call<APIResponseMsg?>?, t: Throwable?) {
-//                        fields.visibility = View.VISIBLE
-//                        loading.visibility = View.GONE
-//                        toastLong("Failed to update password!")
-//                    }
-//                })
-//            } else {
-//                noInternetFragment()
-//            }
-//
-//        }
-//
-//    }
+    private fun updatePassword(
+        currentPass: String, newPass: String, fields: LinearLayout, loading: ProgressBar,
+        inputDialog: AlertDialog, layoutCurrentPassInput: TextInputLayout
+    ) {
+
+        InternetCheck { internet ->
+
+            if (internet) {
+                userService().updateProfile(userId, currentPass, newPass).enqueue(object : Callback<APIResponseMsg?> {
+                    override fun onResponse(call: Call<APIResponseMsg?>?, response: Response<APIResponseMsg?>?) {
+
+                        if (response != null && response.isSuccessful) {
+
+                            if (response.body()?.success == 1) {
+                                when (response.body()?.code) {
+                                    APICode.NOT_VALID -> {
+                                        fields.visibility = View.VISIBLE
+                                        loading.visibility = View.GONE
+                                        toastLong("${response.body()?.message}")
+                                        layoutCurrentPassInput.error = response.body()?.message
+                                    }
+                                    APICode.OK -> {
+                                        inputDialog.dismiss()
+                                        toastShort("Password updated.")
+                                        Prefs(this@UserProfileActivity).put(Keys.PASSWORD, newPass.encrypt())
+                                    }
+                                }
+                            } else {
+                                fields.visibility = View.VISIBLE
+                                loading.visibility = View.GONE
+                                toastLong("Cannot update password!")
+                            }
+
+                        } else {
+                            fields.visibility = View.VISIBLE
+                            loading.visibility = View.GONE
+                            toastLong("Invalid response from Server!")
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<APIResponseMsg?>?, t: Throwable?) {
+                        fields.visibility = View.VISIBLE
+                        loading.visibility = View.GONE
+                        toastLong("Failed to update password!")
+                    }
+                })
+            } else {
+                noInternetFragment()
+            }
+
+        }
+
+    }
 
     private fun verifyStorageCameraPermissions() {
         val permissions = arrayOf(
@@ -483,7 +481,7 @@ class UserProfileActivity : AppCompatActivity() {
                 profile_image.setImageURI(imageUri)
                 imageSelected = true
                 info("$imageUri")
-//                uploadProfileImage()
+                uploadProfileImage()
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 val error = result.error
                 error("${error.message}")
@@ -492,48 +490,50 @@ class UserProfileActivity : AppCompatActivity() {
 
     }
 
-//    private fun uploadProfileImage() {
-//
-//        InternetCheck { internet ->
-//
-//            if (internet) {
-//
-//                if (imageUri != null) {
-//                    val profileImagePath = getImagePath(imageUri!!, this@UserProfileActivity)
-//                    val profileImageFile = File(profileImagePath)
-//                    val profileFile = RequestBody.create(MediaType.parse("image/*"), profileImageFile)
-//                    val profileImage =
-//                        MultipartBody.Part.createFormData("profile_image", profileImageFile.name, profileFile)
-//
-//                    userService().updateProfileImage(getBodyPart(userId), profileImage)
-//                        .enqueue(object : Callback<APIResponseMsg?> {
-//                            override fun onResponse(call: Call<APIResponseMsg?>?, response: Response<APIResponseMsg?>?) {
-//
-//                                if (response != null && response.isSuccessful && response.body()?.success == 1 && response.body()?.code == 1) {
-//                                    imageUpdated = true
-//                                    toastShort("Profile image updated.")
-//
-//                                } else {
-//                                    toastShort("Cannot upload profile image.")
-//
-//                                }
-//
-//                            }
-//
-//                            override fun onFailure(call: Call<APIResponseMsg?>?, t: Throwable?) {
-//                                toastShort("Cannot upload profile image.")
-//                            }
-//                        })
-//
-//
-//                }
-//
-//            } else {
-//                noInternetFragment()
-//            }
-//
-//        }
-//
-//    }
+    private fun uploadProfileImage() {
+
+        InternetCheck { internet ->
+
+            if (internet) {
+
+                if (imageUri != null) {
+                    val profileImagePath = getImagePath(imageUri!!, this@UserProfileActivity)
+                    val profileImageFile = File(profileImagePath)
+                    val profileFile = RequestBody.create(MediaType.parse("image/*"), profileImageFile)
+                    val profileImage =
+                        MultipartBody.Part.createFormData("profile_image", profileImageFile.name, profileFile)
+
+                    userService().updateProfileImage(getBodyPart(userId), profileImage)
+                        .enqueue(object : Callback<APIResponseMsg?> {
+                            override fun onResponse(call: Call<APIResponseMsg?>?, response: Response<APIResponseMsg?>?) {
+
+                                if (response != null && response.isSuccessful && response.body()?.success == 1 && response.body()?.code == 1) {
+                                    imageUpdated = true
+                                    toastShort("Profile image updated.")
+
+                                    Prefs(this@UserProfileActivity).putString(Keys.PROFILE_IMAGE, response.body()?.message!!)
+
+                                } else {
+                                    toastShort("Cannot upload profile image.")
+
+                                }
+
+                            }
+
+                            override fun onFailure(call: Call<APIResponseMsg?>?, t: Throwable?) {
+                                toastShort("Cannot upload profile image.")
+                            }
+                        })
+
+
+                }
+
+            } else {
+                noInternetFragment()
+            }
+
+        }
+
+    }
 
 }
