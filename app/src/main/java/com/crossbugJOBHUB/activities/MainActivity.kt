@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             card_add.show()
 
             card_add.setOnClickListener {
-                startActivity(Intent(this@MainActivity, JobsActivity::class.java))
+                startActivity(Intent(this@MainActivity, AddJobActivity::class.java))
             }
         }
 
