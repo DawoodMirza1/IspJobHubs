@@ -1,8 +1,10 @@
 package com.crossbugJOBHUB.retrofit.interfaces
 
 import com.crossbugJOBHUB.retrofit.config.RetrofitAPI
+import com.crossbugJOBHUB.retrofit.models.Job
 import com.crossbugJOBHUB.retrofit.models.User
 import com.crossbugJOBHUB.retrofit.response.APIResponces
+import com.crossbugJOBHUB.retrofit.response.APIResponcesList
 import com.crossbugJOBHUB.retrofit.response.APIResponseMsg
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -44,3 +46,20 @@ interface UserService {
 }
 
 fun userService(): UserService = RetrofitAPI.getClient().create(UserService::class.java)
+
+interface JobService{
+
+    @GET("jobs/get_jobs.php")
+    fun getJobs(@Query("cat") category: Int = 1,
+                @Query("uid") userId: Long = 0L): Call<APIResponcesList<Job>>
+
+    @POST("jobs/save_jobs.php")
+    fun saveJob(@Field("title") title: String,
+                @Field("descp") descp: String): Call<APIResponseMsg>
+
+    @POST("jobs/apply_job.php")
+    fun applyJob(@Field("jid") id: Long, @Field("uid") uid: Long): Call<APIResponseMsg>
+
+}
+
+fun jobService(): JobService = RetrofitAPI.getClient().create(JobService::class.java)

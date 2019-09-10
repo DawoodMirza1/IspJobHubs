@@ -72,6 +72,7 @@ class LoginFragment : Fragment() {
                                             Prefs(mContext).put(Keys.NAME, data.name)
                                             Prefs(mContext).put(Keys.USERNAME, username.text())
                                             Prefs(mContext).put(Keys.PASSWORD, password.text().encrypt())
+                                            Prefs(mContext).put(Keys.STATUS, data.status)
                                             Prefs(mContext).put(Keys.LOGIN, true)
 
                                             Prefs(mContext).put(Keys.EMAIL, data.email ?: "")
@@ -135,6 +136,7 @@ class LoginFragment : Fragment() {
                                     val data = response.body()!!.data
                                     Prefs(mContext).put(Keys.USER_ID, data.id)
                                     Prefs(mContext).put(Keys.NAME, data.name)
+                                    Prefs(mContext).put(Keys.STATUS, data.status)
 //                                    Prefs(mContext).put(Keys.USERNAME, username.text())
 //                                    Prefs(mContext).put(Keys.PASSWORD, password.text().encrypt())
                                     Prefs(mContext).put(Keys.LOGIN, true)

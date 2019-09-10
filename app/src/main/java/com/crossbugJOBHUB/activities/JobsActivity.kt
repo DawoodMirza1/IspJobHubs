@@ -8,30 +8,36 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.arbazmateen.prefs.Prefs
 import com.crossbugJOBHUB.R
-import com.crossbugJOBHUB.commons.Divider
-import com.crossbugJOBHUB.commons.SimpleRecyclerAdaptor
-import com.crossbugJOBHUB.commons.setHighlightedText
-import com.crossbugJOBHUB.commons.waitDialog
+import com.crossbugJOBHUB.commons.*
+import com.crossbugJOBHUB.retrofit.interfaces.jobService
 import com.crossbugJOBHUB.retrofit.models.Job
+import com.crossbugJOBHUB.retrofit.response.APIResponcesList
+import com.crossbugJOBHUB.retrofit.response.APIResponseMsg
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import kotlinx.android.synthetic.main.activity_jobs.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class JobsActivity : AppCompatActivity() {
 
+    companion object {
+        val category = "category"
+        val CAT_ONE = 1
+        val CAT_TWO = 2
+        val CAT_THREE = 3
+    }
+
+    private var cateType = CAT_ONE
     private var queryText = ""
     private var adaptor: SimpleRecyclerAdaptor<Job>? = null
-    private var list = mutableListOf<Job>(
-        Job(1, "1 - Android Developer", "Details for job requirements and specifications"),
-        Job(1, "2 - Android Developer", "Details for job requirements and specifications"),
-        Job(1, "3 - Android Developer", "Details for job requirements and specifications"),
-        Job(1, "4 - Android Developer", "Details for job requirements and specifications"),
-        Job(1, "5 - Android Developer", "Details for job requirements and specifications"),
-        Job(1, "6 - Android Developer", "Details for job requirements and specifications"),
-        Job(1, "7 - Android Developer", "Details for job requirements and specifications"),
-        Job(1, "8 - Android Developer", "Details for job requirements and specifications"),
-        Job(1, "9 - Android Developer", "Details for job requirements and specifications")
-        )
+    private var list = mutableListOf<Job>()
+
+    private val userId by lazy {
+        Prefs(this@JobsActivity).getLong(Keys.USER_ID, 0L)
+    }
 
     private lateinit var wait: AlertDialog
 
@@ -43,6 +49,10 @@ class JobsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         wait = waitDialog(this)
+
+        cateType = getIntValue(category, CAT_ONE)
+
+        getJobs()
 
         search_view.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -85,7 +95,78 @@ class JobsActivity : AppCompatActivity() {
         initAdaptor()
     }
 
+    private fun getJobs(refresh: Boolean = false) {
+        InternetCheck { internet ->
+            if (internet) {
+
+                empty_progress.visibility = View.VISIBLE
+                recycler_view.visibility = View.GONE
+                empty_layout.visibility = View.GONE
+
+                jobService().getJobs(cateType).enqueue(object : Callback<APIResponcesList<Job>?> {
+                    override fun onResponse(call: Call<APIResponcesList<Job>?>, response: Response<APIResponcesList<Job>?>) {
+                        if (response.isSuccessful && response.body() != null) {
+                            list = response.body()!!.data
+                            if (list.isEmpty()) {
+                                empty_progress?.visibility = View.GONE
+                                recycler_view?.visibility = View.GONE
+                                empty_layout?.visibility = View.VISIBLE
+                                empty_text?.text = "Empty"
+                            } else {
+                                empty_progress?.visibility = View.GONE
+                                recycler_view?.visibility = View.VISIBLE
+                                empty_layout?.visibility = View.GONE
+
+                                if(refresh) {
+                                    if(adaptor != null)
+                                        adaptor!!.changeDataList(list)
+                                    else {
+                                        initAdaptor()
+                                    }
+                                } else {
+                                    initAdaptor()
+                                }
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<APIResponcesList<Job>?>, t: Throwable) {
+                        empty_progress?.visibility = View.GONE
+                        recycler_view?.visibility = View.GONE
+                        empty_layout?.visibility = View.VISIBLE
+                        empty_text?.text = "Failed to load data from server.\nPlease try again."
+                    }
+                })
+
+            } else {
+                noInternetFragment()
+            }
+        }
+
+    }
+
     fun applyJob(id: Long, position: Int) {
+        InternetCheck { internet ->
+            if (internet) {
+                wait.show()
+                jobService().applyJob(id, userId).enqueue(object : Callback<APIResponseMsg?> {
+                    override fun onResponse(call: Call<APIResponseMsg?>, response: Response<APIResponseMsg?>) {
+                        wait.dismiss()
+                        if (response.isSuccessful && response.body() != null) {
+                            adaptor?.removeItemAtPosition(position)
+                        }
+                    }
+
+                    override fun onFailure(call: Call<APIResponseMsg?>, t: Throwable) {
+                        wait.dismiss()
+                        errorDialog(this@JobsActivity, "Error", "Failed to apply this Job!", true).show()
+                    }
+                })
+
+            } else {
+                noInternetFragment()
+            }
+        }
 
     }
 

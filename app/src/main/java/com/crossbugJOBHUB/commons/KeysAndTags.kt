@@ -22,6 +22,7 @@ object Keys {
     const val LEVEL = "level"
     const val ROLE_ID = "role_id"
     const val EMAIL = "email"
+    const val STATUS = "status"
     const val DESIGNATION = "designation"
     const val PROFILE_IMAGE = "image_url"
     const val CASH_ACCOUNT_UID = "cash_account_uid"
