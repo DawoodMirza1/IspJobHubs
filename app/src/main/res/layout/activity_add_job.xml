@@ -16,7 +16,7 @@
             app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
         <EditText
-                android:id="@+id/title"
+                android:id="@+id/_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="8dp"

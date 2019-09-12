@@ -51,12 +51,14 @@ interface JobService{
 
     @GET("jobs/get_jobs.php")
     fun getJobs(@Query("cat") category: Int = 1,
-                @Query("uid") userId: Long = 0L): Call<APIResponcesList<Job>>
+                @Query("uid") userId: Long = 0L): Call<MutableList<Job>>
 
-    @POST("jobs/save_jobs.php")
+    @FormUrlEncoded
+    @POST("jobs/save_job.php")
     fun saveJob(@Field("title") title: String,
                 @Field("descp") descp: String): Call<APIResponseMsg>
 
+    @FormUrlEncoded
     @POST("jobs/apply_job.php")
     fun applyJob(@Field("jid") id: Long, @Field("uid") uid: Long): Call<APIResponseMsg>
 

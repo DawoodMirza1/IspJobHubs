@@ -92,7 +92,6 @@ class JobsActivity : AppCompatActivity() {
         recycler_view?.visibility = View.VISIBLE
         empty_layout?.visibility = View.GONE
 
-        initAdaptor()
     }
 
     private fun getJobs(refresh: Boolean = false) {
@@ -103,10 +102,10 @@ class JobsActivity : AppCompatActivity() {
                 recycler_view.visibility = View.GONE
                 empty_layout.visibility = View.GONE
 
-                jobService().getJobs(cateType).enqueue(object : Callback<APIResponcesList<Job>?> {
-                    override fun onResponse(call: Call<APIResponcesList<Job>?>, response: Response<APIResponcesList<Job>?>) {
+                jobService().getJobs(cateType, userId).enqueue(object : Callback<MutableList<Job>?> {
+                    override fun onResponse(call: Call<MutableList<Job>?>, response: Response<MutableList<Job>?>) {
                         if (response.isSuccessful && response.body() != null) {
-                            list = response.body()!!.data
+                            list = response.body()!!
                             if (list.isEmpty()) {
                                 empty_progress?.visibility = View.GONE
                                 recycler_view?.visibility = View.GONE
@@ -130,7 +129,7 @@ class JobsActivity : AppCompatActivity() {
                         }
                     }
 
-                    override fun onFailure(call: Call<APIResponcesList<Job>?>, t: Throwable) {
+                    override fun onFailure(call: Call<MutableList<Job>?>, t: Throwable) {
                         empty_progress?.visibility = View.GONE
                         recycler_view?.visibility = View.GONE
                         empty_layout?.visibility = View.VISIBLE
@@ -152,8 +151,10 @@ class JobsActivity : AppCompatActivity() {
                 jobService().applyJob(id, userId).enqueue(object : Callback<APIResponseMsg?> {
                     override fun onResponse(call: Call<APIResponseMsg?>, response: Response<APIResponseMsg?>) {
                         wait.dismiss()
-                        if (response.isSuccessful && response.body() != null) {
+                        if (response.isSuccessful && response.body() != null && response.body()?.success == 1) {
                             adaptor?.removeItemAtPosition(position)
+                        } else {
+                            errorDialog(this@JobsActivity, "Error", "Failed to apply this Job!", true).show()
                         }
                     }
 
