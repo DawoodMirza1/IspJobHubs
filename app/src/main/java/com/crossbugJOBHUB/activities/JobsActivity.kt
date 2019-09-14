@@ -1,6 +1,8 @@
 package com.crossbugJOBHUB.activities
 
+import android.app.Activity
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -144,52 +146,25 @@ class JobsActivity : AppCompatActivity() {
 
     }
 
-    fun applyJob(id: Long, position: Int) {
-        InternetCheck { internet ->
-            if (internet) {
-                wait.show()
-                jobService().applyJob(id, userId).enqueue(object : Callback<APIResponseMsg?> {
-                    override fun onResponse(call: Call<APIResponseMsg?>, response: Response<APIResponseMsg?>) {
-                        wait.dismiss()
-                        if (response.isSuccessful && response.body() != null && response.body()?.success == 1) {
-                            adaptor?.removeItemAtPosition(position)
-                        } else {
-                            errorDialog(this@JobsActivity, "Error", "Failed to apply this Job!", true).show()
-                        }
-                    }
-
-                    override fun onFailure(call: Call<APIResponseMsg?>, t: Throwable) {
-                        wait.dismiss()
-                        errorDialog(this@JobsActivity, "Error", "Failed to apply this Job!", true).show()
-                    }
-                })
-
-            } else {
-                noInternetFragment()
-            }
-        }
-
-    }
 
     fun initAdaptor() {
         adaptor = SimpleRecyclerAdaptor.Builder<Job>(this@JobsActivity)
             .setDataList(list)
             .setLayout(R.layout.job_item_layout)
-            .addViews(R.id.title, R.id.description, R.id.apply)
+            .addViews(R.id.title, R.id.description)
             .setBindViewListener { _, item, position, viewMap ->
                 val title = viewMap[R.id.title] as TextView
                 val descp = viewMap[R.id.description] as TextView
-                val apply = viewMap[R.id.apply] as Button
 
                 title.setHighlightedText(this@JobsActivity, item.title, queryText)
                 descp.text = item.description
 
-                apply.setOnClickListener {
-                    applyJob(item.id, position)
-                }
             }
             .setItemClickListener { item, position ->
-                applyJob(item.id, position)
+                val intent = Intent(this@JobsActivity, JobDetailsActivity::class.java)
+                intent.putExtra(JobDetailsActivity.KEY, item)
+                intent.putExtra(JobDetailsActivity.pos, position)
+                startActivityForResult(intent, 1)
             }
             .build()
         recycler_view.adapter = adaptor
@@ -218,6 +193,13 @@ class JobsActivity : AppCompatActivity() {
             else -> {
                 super.onOptionsItemSelected(item)
             }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            adaptor?.removeItemAtPosition(data?.getIntExtra(JobDetailsActivity.pos, -1)!!)
         }
     }
 

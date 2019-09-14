@@ -17,7 +17,7 @@
             android:layout_height="wrap_content">
 
         <TextView
-                android:text="Categories"
+                android:text="Job Types"
                 android:textSize="32sp"
                 android:layout_margin="16dp"
                 android:textAlignment="center"
@@ -50,7 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Add Category"
+                    android:text="Add Jobs"
                     android:textSize="32sp"
                     android:textStyle="bold"
                     android:textColor="#FFF"/>
@@ -81,7 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Category One"
+                    android:text="IT Department"
                     android:textSize="32sp"
                     android:textStyle="bold"
                     android:textColor="#FFF"/>
@@ -112,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Category Two"
+                    android:text="Business Department"
                     android:textSize="32sp"
                     android:textStyle="bold"
                     android:textColor="#FFF"/>
@@ -143,7 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Category Three"
+                    android:text="Math Department"
                     android:textSize="32sp"
                     android:textStyle="bold"
                     android:textColor="#FFF"/>

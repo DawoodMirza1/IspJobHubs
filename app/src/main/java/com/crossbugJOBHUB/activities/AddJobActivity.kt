@@ -1,12 +1,11 @@
 package com.crossbugJOBHUB.activities
 
 import android.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.arbazmateen.validator.validator
 import com.crossbugJOBHUB.R
 import com.crossbugJOBHUB.commons.*
-import com.crossbugJOBHUB.commons.InternetCheck
 import com.crossbugJOBHUB.retrofit.interfaces.jobService
 import com.crossbugJOBHUB.retrofit.response.APIResponseMsg
 import kotlinx.android.synthetic.main.activity_add_job.*

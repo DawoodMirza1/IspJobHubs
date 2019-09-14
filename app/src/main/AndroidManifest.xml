@@ -20,6 +20,8 @@
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activities.JobDetailsActivity">
+        </activity>
         <activity android:name=".activities.AddJobActivity">
         </activity>
         <activity

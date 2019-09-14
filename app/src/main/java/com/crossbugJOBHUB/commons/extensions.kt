@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.crossbugJOBHUB.R
+import com.crossbugJOBHUB.retrofit.models.Job
 import java.io.Serializable
 import java.math.BigDecimal
 import java.math.BigInteger
