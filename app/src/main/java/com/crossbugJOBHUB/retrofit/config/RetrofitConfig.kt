@@ -34,9 +34,9 @@ object RetrofitAPI {
         logging.level = HttpLoggingInterceptor.Level.BODY
 
         httpClient.addInterceptor(logging)
-        httpClient.connectTimeout(5, TimeUnit.SECONDS)
-        httpClient.readTimeout(5, TimeUnit.SECONDS)
-        httpClient.writeTimeout(5, TimeUnit.SECONDS)
+        httpClient.connectTimeout(30, TimeUnit.SECONDS)
+        httpClient.readTimeout(30, TimeUnit.SECONDS)
+        httpClient.writeTimeout(30, TimeUnit.SECONDS)
 
     }
 
