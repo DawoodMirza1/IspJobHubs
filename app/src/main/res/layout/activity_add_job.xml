@@ -10,6 +10,30 @@
         tools:context=".activities.AddJobActivity">
 
     <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
+
+        <EditText
+                android:id="@+id/category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_arrow_drop_down"
+                android:drawablePadding="8dp"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="Select Category"
+                android:inputType="text"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textSize="18sp"
+                tools:ignore="RtlHardcoded" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -56,7 +56,8 @@ interface JobService{
     @FormUrlEncoded
     @POST("jobs/save_job.php")
     fun saveJob(@Field("title") title: String,
-                @Field("descp") descp: String): Call<APIResponseMsg>
+                @Field("descp") descp: String,
+                @Field("cat") cat: Int): Call<APIResponseMsg>
 
     @FormUrlEncoded
     @POST("jobs/apply_job.php")

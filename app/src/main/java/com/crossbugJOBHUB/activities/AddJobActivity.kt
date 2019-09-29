@@ -2,6 +2,7 @@ package com.crossbugJOBHUB.activities
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
 import com.arbazmateen.validator.validator
 import com.crossbugJOBHUB.R
@@ -16,12 +17,21 @@ import retrofit2.Response
 class AddJobActivity : AppCompatActivity() {
 
     private lateinit var wait: AlertDialog
+    var type = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_job)
 
         wait = waitDialog(this)
+
+
+        category.setOnTouchListener { _, event ->
+            if(event.action == MotionEvent.ACTION_UP) {
+                showCategoryDialog()
+            }
+            false
+        }
 
         loginBtn.setOnClickListener {
 
@@ -39,11 +49,21 @@ class AddJobActivity : AppCompatActivity() {
 
     }
 
+    fun showCategoryDialog() {
+        SingleSelectListDialog(this@AddJobActivity,
+            listOf("Category One", "Category Two", "Category Three"), "Select Category")
+            .setItemClickListener { item, _, position ->
+                category.setText(item)
+                type = position + 1
+            }
+            .show()
+    }
+
     fun saveJob() {
         InternetCheck { internet ->
             if (internet) {
                 wait.show()
-                jobService().saveJob(_title.text(), description.text()).enqueue(object : Callback<APIResponseMsg?> {
+                jobService().saveJob(_title.text(), description.text(), type).enqueue(object : Callback<APIResponseMsg?> {
                     override fun onResponse(call: Call<APIResponseMsg?>, response: Response<APIResponseMsg?>) {
                         wait.dismiss()
                         if (response.isSuccessful && response.body() != null && response.body()?.success == 1) {

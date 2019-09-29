@@ -26,10 +26,10 @@ import retrofit2.Response
 class JobsActivity : AppCompatActivity() {
 
     companion object {
-        val category = "category"
-        val CAT_ONE = 1
-        val CAT_TWO = 2
-        val CAT_THREE = 3
+        const val category = "category"
+        const val CAT_ONE = 1
+        const val CAT_TWO = 2
+        const val CAT_THREE = 3
     }
 
     private var cateType = CAT_ONE
