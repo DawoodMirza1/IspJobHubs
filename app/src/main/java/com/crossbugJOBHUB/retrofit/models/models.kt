@@ -22,5 +22,8 @@ data class User(
 
 data class Job(@SerializedName("id") var id: Long = 0,
                @SerializedName("title") var title: String = "",
+               @SerializedName("type") var type: String = "",
+               @SerializedName("salary") var salary: String = "",
+               @SerializedName("education") var education: String = "",
                @SerializedName("description") var description: String = ""
                ): Serializable

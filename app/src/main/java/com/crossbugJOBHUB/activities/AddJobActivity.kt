@@ -36,9 +36,12 @@ class AddJobActivity : AppCompatActivity() {
         loginBtn.setOnClickListener {
 
             val validTitle = _title.validator(layout_title).required().validate()
+            val validType = _type.validator(layout_type).required().validate()
+            val validSalary = _salary.validator(layout_salary).required().validate()
+            val validEducation = _education.validator(layout_education).required().validate()
             val validDescp = description.validator(layout_description).required().validate()
 
-            if (validTitle && validDescp) {
+            if (validTitle && validDescp && validType && validSalary && validEducation) {
 
                 saveJob()
 
@@ -63,7 +66,7 @@ class AddJobActivity : AppCompatActivity() {
         InternetCheck { internet ->
             if (internet) {
                 wait.show()
-                jobService().saveJob(_title.text(), description.text(), type).enqueue(object : Callback<APIResponseMsg?> {
+                jobService().saveJob(_title.text(), _type.text(), _salary.text(), _education.text(), description.text(), type).enqueue(object : Callback<APIResponseMsg?> {
                     override fun onResponse(call: Call<APIResponseMsg?>, response: Response<APIResponseMsg?>) {
                         wait.dismiss()
                         if (response.isSuccessful && response.body() != null && response.body()?.success == 1) {

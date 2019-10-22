@@ -44,7 +44,10 @@ class JobDetailsActivity : AppCompatActivity() {
         if (job != null) {
 
             jb_title.text = job?.title
-            jb_descp.text = job?.description
+            jb_type.text = "Type: " + job?.type
+            jb_salary.text = "Salary: " + job?.salary
+            jb_education.text = "Education: " + job?.education
+            jb_descp.text = "Description:\n" + job?.description
 
         }
 
