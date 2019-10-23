@@ -51,6 +51,10 @@ class JobDetailsActivity : AppCompatActivity() {
 
         }
 
+        if (userId == 1) {
+            jb_apply.visibility = Visibility.GONE;
+        }
+        
         jb_apply.setOnClickListener {
             applyJob()
         }
