@@ -1,6 +1,7 @@
 package com.crossbugJOBHUB.retrofit.interfaces
 
 import com.crossbugJOBHUB.retrofit.config.RetrofitAPI
+import com.crossbugJOBHUB.retrofit.models.Category
 import com.crossbugJOBHUB.retrofit.models.Job
 import com.crossbugJOBHUB.retrofit.models.User
 import com.crossbugJOBHUB.retrofit.response.APIResponces
@@ -50,7 +51,7 @@ fun userService(): UserService = RetrofitAPI.getClient().create(UserService::cla
 interface JobService{
 
     @GET("jobs/get_jobs.php")
-    fun getJobs(@Query("cat") category: Int = 1,
+    fun getJobs(@Query("cat") category: Long = 0L,
                 @Query("uid") userId: Long = 0L): Call<MutableList<Job>>
 
     @FormUrlEncoded
@@ -60,7 +61,7 @@ interface JobService{
                 @Field("salary") salary: String,
                 @Field("education") education: String,
                 @Field("descp") descp: String,
-                @Field("cat") cat: Int): Call<APIResponseMsg>
+                @Field("cat") cat: Long): Call<APIResponseMsg>
 
     @FormUrlEncoded
     @POST("jobs/apply_job.php")
@@ -69,3 +70,16 @@ interface JobService{
 }
 
 fun jobService(): JobService = RetrofitAPI.getClient().create(JobService::class.java)
+
+interface CategoryService {
+
+    @GET("cat/get_category.php")
+    fun getCategories(): Call<MutableList<Category>>
+
+    @FormUrlEncoded
+    @POST("cat/save_category.php")
+    fun saveCategory(@Field("id") id: Long, @Field("title") title: String): Call<APIResponseMsg>
+
+}
+
+fun categoryService(): CategoryService = RetrofitAPI.getClient().create(CategoryService::class.java)

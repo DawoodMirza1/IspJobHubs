@@ -27,12 +27,9 @@ class JobsActivity : AppCompatActivity() {
 
     companion object {
         const val category = "category"
-        const val CAT_ONE = 1
-        const val CAT_TWO = 2
-        const val CAT_THREE = 3
     }
 
-    private var cateType = CAT_ONE
+    private var cateType = 0L
     private var queryText = ""
     private var adaptor: SimpleRecyclerAdaptor<Job>? = null
     private var list = mutableListOf<Job>()
@@ -52,7 +49,7 @@ class JobsActivity : AppCompatActivity() {
 
         wait = waitDialog(this)
 
-        cateType = getIntValue(category, CAT_ONE)
+        cateType = getLongValue(category, 0L)
 
         getJobs()
 

@@ -27,3 +27,12 @@ data class Job(@SerializedName("id") var id: Long = 0,
                @SerializedName("education") var education: String = "",
                @SerializedName("description") var description: String = ""
                ): Serializable
+
+data class Category(
+    @SerializedName("id") var id: Long = 0,
+    @SerializedName("title") var title: String = ""
+): Serializable {
+    override fun toString(): String {
+        return title
+    }
+}

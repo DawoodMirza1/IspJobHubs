@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.arbazmateen.validator.validator
 import com.crossbugJOBHUB.R
 import com.crossbugJOBHUB.commons.*
+import com.crossbugJOBHUB.retrofit.interfaces.categoryService
 import com.crossbugJOBHUB.retrofit.interfaces.jobService
+import com.crossbugJOBHUB.retrofit.models.Category
 import com.crossbugJOBHUB.retrofit.response.APIResponseMsg
 import kotlinx.android.synthetic.main.activity_add_job.*
 import retrofit2.Call
@@ -17,14 +19,14 @@ import retrofit2.Response
 class AddJobActivity : AppCompatActivity() {
 
     private lateinit var wait: AlertDialog
-    var type = 0
+    lateinit var cat: Category
+    private var list = mutableListOf<Category>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_job)
 
         wait = waitDialog(this)
-
 
         category.setOnTouchListener { _, event ->
             if(event.action == MotionEvent.ACTION_UP) {
@@ -49,15 +51,37 @@ class AddJobActivity : AppCompatActivity() {
 
         }
 
+        getCategories()
 
     }
 
-    fun showCategoryDialog() {
+    private fun getCategories() {
+        InternetCheck { internet ->
+            if (internet) {
+
+                categoryService().getCategories().enqueue(object : Callback<MutableList<Category>?> {
+                    override fun onResponse(call: Call<MutableList<Category>?>, response: Response<MutableList<Category>?>) {
+                        if (response.isSuccessful && response.body() != null) {
+                            list = response.body()!!
+                        }
+                    }
+
+                    override fun onFailure(call: Call<MutableList<Category>?>, t: Throwable) {}
+                })
+
+            } else {
+                noInternetFragment()
+            }
+        }
+
+    }
+
+    private fun showCategoryDialog() {
         SingleSelectListDialog(this@AddJobActivity,
-            listOf("Category One", "Category Two", "Category Three"), "Select Category")
-            .setItemClickListener { item, _, position ->
-                category.setText(item)
-                type = position + 1
+            list, "Select Category")
+            .setItemClickListener { item, _, _ ->
+                category.setText(item.title)
+                cat = item
             }
             .show()
     }
@@ -66,7 +90,7 @@ class AddJobActivity : AppCompatActivity() {
         InternetCheck { internet ->
             if (internet) {
                 wait.show()
-                jobService().saveJob(_title.text(), _type.text(), _salary.text(), _education.text(), description.text(), type).enqueue(object : Callback<APIResponseMsg?> {
+                jobService().saveJob(_title.text(), _type.text(), _salary.text(), _education.text(), description.text(), cat.id).enqueue(object : Callback<APIResponseMsg?> {
                     override fun onResponse(call: Call<APIResponseMsg?>, response: Response<APIResponseMsg?>) {
                         wait.dismiss()
                         if (response.isSuccessful && response.body() != null && response.body()?.success == 1) {
