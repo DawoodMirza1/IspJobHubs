@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.arbazmateen.prefs.Prefs
 import com.crossbugJOBHUB.R
@@ -51,8 +52,8 @@ class JobDetailsActivity : AppCompatActivity() {
 
         }
 
-        if (userId == 1) {
-            jb_apply.visibility = Visibility.GONE;
+        if (userId == 1L) {
+            jb_apply.visibility = View.GONE
         }
         
         jb_apply.setOnClickListener {
